@@ -1,0 +1,55 @@
+/* Giao diện chung cho hub và editor.
+   Design system: Sora · #282828 · #FFFFFF · #F7F7F7 · olive #CBD77E · hazel #E6CA9A */
+:root{
+  --bg:#F7F7F7; --surface:#FFFFFF; --surface-2:#F1F1EE; --text:#282828; --muted:#8E8E89;
+  --border:#ECECE8; --accent:#7E8E22; --accent-soft:#EEF3D2; --olive:#CBD77E; --hazel:#E6CA9A;
+  --ink:#282828; --on-ink:#FFFFFF; --ok:#5d7a1c; --ok-soft:#eef3d2;
+  --code-bg:#282828; --code-text:#EDEDE9;
+  --shadow:0 1px 2px rgba(40,40,40,.03),0 10px 30px rgba(40,40,40,.05);
+  --r:28px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1E1E1E; --surface:#282828; --surface-2:#333333; --text:#F7F7F7; --muted:#9a9a93;
+    --border:#363636; --accent:#CBD77E; --accent-soft:#353a1f; --ink:#F7F7F7; --on-ink:#282828;
+    --code-bg:#141414; --shadow:none;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14.5px/1.55 "Sora",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+a{color:var(--accent)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;background:var(--surface-2);padding:.12em .5em;border-radius:6px}
+
+/* Brand mark: gradient mờ olive/hazel */
+.mark{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#282828;flex:none;
+  background:radial-gradient(circle at 25% 20%,#E6CA9A 0,transparent 60%),radial-gradient(circle at 80% 85%,#B9CB5C 0,transparent 55%),#DCE5AE}
+.mark svg{width:18px;height:18px}
+
+.topbar{display:flex;align-items:center;gap:14px;padding:12px 24px;background:var(--bg);position:sticky;top:0;z-index:5;backdrop-filter:blur(10px)}
+.topbar .brand{font-weight:600;font-size:15px;display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;letter-spacing:-.02em}
+.topbar nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;background:var(--surface);padding:4px;border-radius:99px;box-shadow:var(--shadow)}
+.topbar nav a{color:var(--muted);text-decoration:none;padding:7px 16px;border-radius:99px;font-size:13.5px}
+.topbar nav a:hover{color:var(--text)}
+.topbar nav a.on{background:var(--ink);color:var(--on-ink)}
+
+.btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13px;font-weight:500;padding:8px 16px;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;text-decoration:none;transition:background .15s,border-color .15s}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.btn.olive{background:var(--olive);border-color:var(--olive);color:#282828}
+.btn.sm{padding:5px 11px;font-size:12px}
+
+.seg{display:inline-flex;background:var(--surface);border-radius:99px;padding:4px;gap:2px;box-shadow:var(--shadow)}
+.seg button{font:inherit;font-size:13px;border:0;background:transparent;color:var(--muted);padding:7px 16px;border-radius:99px;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--on-ink);font-weight:500}
+
+.phone-frame{width:320px;max-width:100%;height:650px;border-radius:44px;border:9px solid #282828;background:#282828;overflow:hidden;box-shadow:0 30px 60px rgba(40,40,40,.18);position:relative}
+.phone-frame::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:96px;height:26px;background:#141414;border-radius:99px;z-index:2}
+.phone-frame iframe,.phone-frame .screen{width:100%;height:100%;border:0;display:block;border-radius:35px;overflow-y:auto;scrollbar-width:none}
+.phone-frame .screen::-webkit-scrollbar{display:none}
+
+.browser{width:100%;border-radius:22px;overflow:hidden;background:var(--surface);box-shadow:0 30px 60px rgba(40,40,40,.12)}
+.browser .bar,.browser .tb{height:38px;background:var(--surface);display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--border)}
+.browser .bar i,.browser .tb i{width:10px;height:10px;border-radius:50%;background:var(--border)}
+.browser .bar span,.browser .tb span{margin-left:10px;font-size:11.5px;color:var(--text);font-weight:500;background:var(--surface-2);border-radius:99px;padding:4px 14px}
+
+@media (max-width:700px){.topbar{padding:10px 16px}.topbar nav a{padding:6px 12px}}
